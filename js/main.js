@@ -7,7 +7,7 @@
             if ($('#spinner').length > 0) {
                 $('#spinner').removeClass('show');
             }
-        }, 5000);
+        },5000);
     };
     spinner();
     
@@ -125,19 +125,6 @@ $('.btn-close').click(function () {
     });
 
 
-    if (typeof(Storage) !== "undefined") {
-        // Vérification et mise à jour du nombre de visites
-       
-        // Mise à jour du nombre de personnes
-        if (localStorage.getItem("nbPersonnes")) {
-            let nbPersonnes = parseInt(localStorage.getItem("nbPersonnes")) + 1;
-            localStorage.setItem("nbPersonnes", nbPersonnes);
-            $('#nbPersonnes').text(" " +nbPersonnes);
-        } else {
-            localStorage.setItem("nbPersonnes", 1);
-            $('#nbPersonnes').text(1);
-        }
-    } 
     
     $('#contactForm').submit(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du formulaire
