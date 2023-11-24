@@ -7,7 +7,7 @@
             if ($('#spinner').length > 0) {
                 $('#spinner').removeClass('show');
             }
-        },5000);
+        },1);
     };
     spinner();
     
@@ -70,8 +70,9 @@
     }
 
 
-    var $videoSrc;
 {/*
+
+    var $videoSrc;
 $('.btn-play').click(function(){
     $videoSrc=$(this).data('src');
     $('#video').attr('src',$videoSrc);
