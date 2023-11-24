@@ -7,7 +7,7 @@
             if ($('#spinner').length > 0) {
                 $('#spinner').removeClass('show');
             }
-        },);
+        },5000);
     };
     spinner();
     
@@ -71,7 +71,7 @@
 
 
     var $videoSrc;
-
+{/*
 $('.btn-play').click(function(){
     $videoSrc=$(this).data('src');
     $('#video').attr('src',$videoSrc);
@@ -82,7 +82,7 @@ $('.btn-play').click(function(){
 $('.btn-close').click(function () {
     $('#video').attr('src','');
 });
-
+*/}
 
 
 
