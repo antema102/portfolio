@@ -1,0 +1,12 @@
+canvas {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    opacity: 1;
+    z-index: 20;
+    box-shadow: 0px 0px 60px rgba(115, 102, 102, 0.733);
+  }
+  
+  .dg.ac {
+    display: none;
+  }
