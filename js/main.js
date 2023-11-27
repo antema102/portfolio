@@ -7,7 +7,7 @@
             if ($('#spinner').length > 0) {
                 $('#spinner').removeClass('show');
             }
-        },5000);
+        },3000);
     };
     spinner();
     
@@ -18,7 +18,7 @@
 
     // Navbar on scrolling
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
+        if ($(this).scrollTop() > 100) {
             $('.navbar').fadeIn('slow').css('display', 'flex');
         } else {
             $('.navbar').fadeOut('slow').css('display', 'none');
@@ -27,7 +27,7 @@
 
 
     // Smooth scrolling on the navbar links
-    $(".navbar-nav a").on('click', function (event) {
+   /* $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault();
             
@@ -41,9 +41,9 @@
             }
         }
     });
+    */
     
-    
-    // Back to top button
+   /* // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
@@ -51,11 +51,13 @@
             $('.back-to-top').fadeOut('slow');
         }
     });
+
+    /*
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({scrollTop: 0}, 1, 'easeInOutExpo');
         return false;
     });
-    
+    */
 
     // Typed Initiate
     if ($('.typed-text-output').length == 1) {
