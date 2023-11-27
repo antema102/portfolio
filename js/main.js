@@ -133,7 +133,7 @@ $('.btn-close').click(function () {
   
     $('#contactForm').submit(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du formulaire
-        $('#Alert').text("Je m'exuse pour le moment le contact de formule ne marche pas ")
+        $('#Alert').text("Je m'excuse, actuellement, le formulaire de contact ne fonctionne pas correctement.")
          
     });
     
