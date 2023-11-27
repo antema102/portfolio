@@ -91,10 +91,10 @@ $('.btn-close').click(function () {
 
 
     // Facts counter
-    $('[data-toggle="counter-up"]').counterUp({
+ /*   $('[data-toggle="counter-up"]').counterUp({
         delay: 10,
         time: 2000
-    });
+    });*/
 
 
     // Skills
@@ -119,7 +119,7 @@ $('.btn-close').click(function () {
 
 
     // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
+ /*   $(".testimonial-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
         items: 1,
@@ -127,7 +127,7 @@ $('.btn-close').click(function () {
         loop: true,
     });
 
-
+*/
     
     $('#contactForm').submit(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du formulaire
