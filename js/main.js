@@ -128,25 +128,45 @@ $('.btn-close').click(function () {
         loop: true,
     });
 
-*/
-    
+*/    
+
+  
     $('#contactForm').submit(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du formulaire
-
-        // Récupérer les données du formulaire
-        var name = $('#name').val();
-        var email = $('#email').val();
-        var subject = $('#subject').val();
-        var message = $('#message').val();
-
-        // Redirection vers la boîte e-mail spécifiée
-        var mailtoLink = 'mailto:antema103@gmail.com' +
-            '?subject=' + encodeURIComponent(subject) +
-            '&body=' + encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\nMessage: ' + message);
-
-        window.location.href = mailtoLink; // Redirection vers la boîte e-mail
+        $('#Alert').text("Je m'exuse pour le moment le contact de formule ne marche pas ")
+         
     });
-
+    
 
 })(jQuery);
 
+$(document).ready(function() {
+    $('#carouselEcotree').carousel({
+        interval: false, // Désactive l'autoplay
+        wrap: false
+        // Autres options...
+    });
+});
+
+$(document).ready(function() {
+    $('#carouselODC').carousel({
+        interval: false, // Désactive l'autoplay
+        wrap: false
+        // Autres options...
+    });
+});
+
+$(document).ready(function() {
+    $('#carouselIlo').carousel({
+        interval: false, // Désactive l'autoplay
+        wrap: false
+        // Autres options...
+    });
+});
+$(document).ready(function() {
+    $('#carousel_ODC_1').carousel({
+        interval: false, // Désactive l'autoplay
+        wrap: false
+        // Autres options...
+    });
+});
