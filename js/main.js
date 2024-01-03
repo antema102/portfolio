@@ -7,11 +7,11 @@
             if ($('#spinner').length > 0) {
                 $('#spinner').removeClass('show');
             }
-        }, 5000);
+        },5000);
     };
     spinner();
-
-
+    
+    
     // Initiate the wowjs
     new WOW().init();
 
@@ -27,40 +27,40 @@
 
 
     // Smooth scrolling on the navbar links
-    /* $(".navbar-nav a").on('click', function (event) {
-         if (this.hash !== "") {
-             event.preventDefault();
-             
-             $('html, body').animate({
-                 scrollTop: $(this.hash).offset().top - 45
-             }, 1500, 'easeInOutExpo');
-             
-             if ($(this).parents('.navbar-nav').length) {
-                 $('.navbar-nav .active').removeClass('active');
-                 $(this).closest('a').addClass('active');
-             }
-         }
-     });
-     */
+   /* $(".navbar-nav a").on('click', function (event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            
+            $('html, body').animate({
+                scrollTop: $(this.hash).offset().top - 45
+            }, 1500, 'easeInOutExpo');
+            
+            if ($(this).parents('.navbar-nav').length) {
+                $('.navbar-nav .active').removeClass('active');
+                $(this).closest('a').addClass('active');
+            }
+        }
+    });
+    */
+    
+   /* // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
+    });
 
-    /* // Back to top button
-     $(window).scroll(function () {
-         if ($(this).scrollTop() > 300) {
-             $('.back-to-top').fadeIn('slow');
-         } else {
-             $('.back-to-top').fadeOut('slow');
-         }
-     });
- 
-     /*
-     $('.back-to-top').click(function () {
-         $('html, body').animate({scrollTop: 0}, 1, 'easeInOutExpo');
-         return false;
-     });
-     */
+    /*
+    $('.back-to-top').click(function () {
+        $('html, body').animate({scrollTop: 0}, 1, 'easeInOutExpo');
+        return false;
+    });
+    */
 
     // Typed Initiate/
-
+    
     if ($('.typed-text-output').length == 1) {
         var typed_strings = $('.typed-text').text();
         var typed = new Typed('.typed-text-output', {
@@ -73,7 +73,7 @@
     }
 
 
-    {/*
+{/*
 
     var $videoSrc;
 $('.btn-play').click(function(){
@@ -92,10 +92,10 @@ $('.btn-close').click(function () {
 
 
     // Facts counter
-    /*   $('[data-toggle="counter-up"]').counterUp({
-           delay: 10,
-           time: 2000
-       });*/
+ /*   $('[data-toggle="counter-up"]').counterUp({
+        delay: 10,
+        time: 2000
+    });*/
 
 
     // Skills
@@ -103,7 +103,7 @@ $('.btn-close').click(function () {
         $('.progress .progress-bar').each(function () {
             $(this).css("width", $(this).attr("aria-valuenow") + '%');
         });
-    }, { offset: '80%' });
+    }, {offset: '80%'});
 
 
     // Portfolio isotope and filter
@@ -115,64 +115,32 @@ $('.btn-close').click(function () {
         $("#portfolio-flters li").removeClass('active');
         $(this).addClass('active');
 
-        portfolioIsotope.isotope({ filter: $(this).data('filter') });
+        portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
 
 
     // Testimonials carousel
-    /*   $(".testimonial-carousel").owlCarousel({
-           autoplay: true,
-           smartSpeed: 1000,
-           items: 1,
-           dots: true,
-           loop: true,
-       });
-   
-   */
-
-
-    $('#contactForm').submit(function (event) {
-        event.preventDefault(); // Empêche le comportement par défaut du formulaire
-        $('#Alert').text("Je m'excuse, actuellement, le formulaire de contact ne fonctionne pas correctement.")
-
+ /*   $(".testimonial-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1000,
+        items: 1,
+        dots: true,
+        loop: true,
     });
 
-    $('#spinner').hide();
+*/    
 
-    // Function to check if all images are loaded
-    function imagesLoaded() {
-        var totalImages = $('.portfolio-img img').length;
-        var loadedImages = 0;
-
-        $('.portfolio-img img').each(function () {
-            if (this.complete) {
-                loadedImages++;
-                if (loadedImages === totalImages) {
-                    $('#spinner').hide();
-                    $('.portfolio-container').fadeIn();
-                }
-            } else {
-                $(this).on('load', function () {
-                    loadedImages++;
-                    if (loadedImages === totalImages) {
-                        $('#spinner').hide();
-                        $('.portfolio-container').fadeIn();
-                    }
-                });
-            }
-        });
-    }
-
-    // Initially hide the image container
-    $('.portfolio-container').hide();
-
-    // Call the imagesLoaded function
-    imagesLoaded();
-
+  
+    $('#contactForm').submit(function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du formulaire
+        $('#Alert').text("Je m'excuse, actuellement, le formulaire de contact ne fonctionne pas correctement.")
+         
+    });
+    
 
 })(jQuery);
 
-$(document).ready(function () {
+$(document).ready(function() {
     $('#carouselEcotree').carousel({
         interval: false, // Désactive l'autoplay
         wrap: false
@@ -180,7 +148,7 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
     $('#carouselODC').carousel({
         interval: false, // Désactive l'autoplay
         wrap: false
@@ -188,14 +156,14 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
     $('#carouselIlo').carousel({
         interval: false, // Désactive l'autoplay
         wrap: false
         // Autres options...
     });
 });
-$(document).ready(function () {
+$(document).ready(function() {
     $('#carousel_ODC_1').carousel({
         interval: false, // Désactive l'autoplay
         wrap: false
