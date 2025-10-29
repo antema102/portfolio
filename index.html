@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Porfolio Antema</title>
+        <title>Portfolio Antema</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -26,9 +26,45 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <!--Template Main CSS FILE-->
         <link rel="stylesheet" href="./css/canvas.css">
+        <!-- Custom Styles for Popup & Dark Mode -->
+        <link rel="stylesheet" href="./css/custom.css">
         <!---->
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
+        <!-- Welcome Popup Start -->
+        <div id="welcomePopup" class="welcome-popup">
+            <div class="welcome-popup-content">
+                <button class="welcome-popup-close" onclick="closeWelcomePopup()">&times;</button>
+                <div class="welcome-popup-header">
+                    <h2>Bienvenue sur mon Portfolio !</h2>
+                    <div class="welcome-popup-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                </div>
+                <div class="welcome-popup-body">
+                    <p>Bonjour et bienvenue ! Je suis <strong>Antema Nirina Andriamihaja</strong>, développeur Full Stack passionné.</p>
+                    <p>Découvrez mes projets, compétences et n'hésitez pas à me contacter pour toute collaboration !</p>
+                    <div class="welcome-popup-features">
+                        <div class="feature-item">
+                            <i class="fas fa-code"></i>
+                            <span>Développement Web & Mobile</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Solutions Innovantes</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Passion & Créativité</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="welcome-popup-footer">
+                    <button class="btn btn-primary" onclick="closeWelcomePopup()">Découvrir mon travail</button>
+                </div>
+            </div>
+        </div>
+        <!-- Welcome Popup End -->
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -36,6 +72,11 @@
             </div>
         </div>
         <!-- Spinner End -->
+        <!-- Dark Mode Toggle -->
+        <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <!-- Dark Mode Toggle End -->
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light fixed-top shadow py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="#" class="navbar-brand d-block d-lg-none">
@@ -57,7 +98,7 @@
                     <a href="#service" class="nav-item nav-link">Mes Services</a>
                 </div>
                 <a href="index.html" class="navbar-brand bg-secondary py-3 px-4 mx-3 d-none d-lg-block">
-                    <h1 class="text-primary fw-bold m-0">Acceuil</h1>
+                    <h1 class="text-primary fw-bold m-0">Accueil</h1>
                 </a>
                 <div class="navbar-nav me-auto py-0">
                     <a href="#project" class="nav-item nav-link">Galerie</a>
@@ -73,7 +114,7 @@
                 <h3 class="text-primary mb-3">Je suis</h3>
                 <h1 class="display-3 mb-3 text-white">Antema Nirina</h1>
                 <h2 class="typed-text-output d-inline " style="color: white;"></h2>
-                <div class="typed-text d-none">Web Designer, Devellopeur Web, Front End Devellopeur, Back End Devellopeur, FullStack Devellopeur</div>
+                <div class="typed-text d-none">Web Designer, Développeur Web, Front End Développeur, Back End Développeur, FullStack Développeur</div>
                 <div class="mt-3 btn-custom">
                 </div>
             </div>
@@ -115,11 +156,11 @@
                                 </p>
                                 <p>
                                     <i class="fa-regular fa-address-book"></i>
-                                    Address:
+                                    Adresse :
                                 </p>
                                 <p>
                                     <i class="fa-solid fa-envelopes-bulk"></i>
-                                    Code Postal:
+                                    Code Postal :
                                 </p>
                                 <p>
                                     <i class="fa-regular fa-envelope"></i>
@@ -131,11 +172,11 @@
                                 </p>
                                 <p>
                                     <i class="fa-solid fa-phone"></i>
-                                    Numero :
+                                    Numéro :
                                 </p>
                                 <p>
                                     <i class="fa-solid fa-file"></i>
-                                    Telechargement :
+                                    Téléchargement :
                                 </p>
                             </div>
                             <div class="item" style="color: #6244C5;">
@@ -199,7 +240,7 @@
                                     <a href="https://www.orange.mg" target="_blank"> Orange Digital Center Madagascar</a>
                                 </h5>
                                 <p>
-                                    Ce projet est un frontend pour la gestion des salles à l'Orange Digital Center Madagascar.
+                                    Ce projet est un front-end pour la gestion des salles à l'Orange Digital Center Madagascar.
                                 </p>
                                 <p>
                                     Il permet aux utilisateurs de visualiser les salles disponibles, de réserver des salles pour des événements spécifiques, de gérer les réservations existantes, etc.
@@ -348,7 +389,7 @@
                                     J'ai également eu l'opportunité d'enseigner aux apprenants les bases fondamentales de la création d'un site web dynamique avec HTML, CSS et Bootstrap.
                                 </p>
                                 <p>
-                                    De plus, j'ai eu la chance d'accompagner des collégiens et lycéens aspirant à devenir informaticiens grâce au programme "Super Coder", en leur enseignant les bases fondamentales de l'algorithme à l'aide de language Scratch.
+                                    De plus, j'ai eu la chance d'accompagner des collégiens et lycéens aspirant à devenir informaticiens grâce au programme "Super Coder", en leur enseignant les bases fondamentales de l'algorithme à l'aide du langage Scratch.
                                 </p>
                                 <div id="carousel_ODC_1" class="carousel slide">
                                     <div class="carousel-indicators">
@@ -617,7 +658,7 @@
                                     <a href="https://ecotree.green/" target="_blank">Ecotree</a>
                                 </h4>
                                 <span>
-                                    Création de quelque site vitrine pour un client Freelence
+                                    Création de quelques sites vitrines pour un client Freelance
                                 </span>
                                 <p class="mt-3">
                                     <b>
@@ -1042,7 +1083,7 @@
                             </div>
                             <div class="ms-sm-4">
                                 <h4 class="mb-3">Développement d’applications (Programmation)</h4>
-                                <span>Aisance avec la langage Java pour la Programmation d'application (POO , javaFX et swing pour l'interface graphique)</span>
+                                <span>Aisance avec le langage Java pour la programmation d'applications (POO, JavaFX et Swing pour l'interface graphique)</span>
                             </div>
                         </div>
                     </div>
@@ -1054,9 +1095,9 @@
                             <div class="ms-sm-4">
                                 <h4 class="mb-3">Développement Web</h4>
                                 <span>
-                                    Du cote back end : bonne maîtrise du MVC avec des framework nécessaire du cote back-end avec ses frameworks (java jee , spring , ejb , hybernate , php , codeIgniter , symphony , JavaScript,...)
-                                             Du cote front end : bonne maîtrise du langage JS & CSS avec quelque framework (bootstrap , react js , jquery  , ...)
-                                             Avec une bonne connaissance et expérience avec les web services (AZURE, Architecture REST - SOAP).
+                                    Du côté back-end : bonne maîtrise du MVC avec des frameworks nécessaires côté back-end (Java JEE, Spring, EJB, Hibernate, PHP, CodeIgniter, Symfony, JavaScript, etc.)
+                                    Du côté front-end : bonne maîtrise du langage JS & CSS avec quelques frameworks (Bootstrap, React JS, jQuery, etc.)
+                                    Avec une bonne connaissance et expérience des web services (AZURE, Architecture REST - SOAP).
                                 </span>
                             </div>
                         </div>
@@ -1068,7 +1109,7 @@
                             </div>
                             <div class="ms-sm-4">
                                 <h4 class="mb-3">Développement Mobile</h4>
-                                <span>Développement mobile multi plate-forme avec ionic 4,react native ,fluter</span>
+                                <span>Développement mobile multi-plateforme avec Ionic 4, React Native, Flutter</span>
                             </div>
                         </div>
                     </div>
@@ -1079,7 +1120,7 @@
                             </div>
                             <div class="ms-sm-4">
                                 <h4 class="mb-3">Multimédia & Design</h4>
-                                <span>Une bonne maîtrise de Photoshop et Moyen connaissance de logiciel de montage de vidéo et 3D comme After Effect & Cinéma 4D</span>
+                                <span>Une bonne maîtrise de Photoshop et une connaissance moyenne des logiciels de montage vidéo et 3D comme After Effects & Cinema 4D</span>
                             </div>
                         </div>
                     </div>
@@ -1099,7 +1140,7 @@
                 </div>
                 <div class="col-lg-6 text-lg-end">
                     <ul class="list-inline mx-n3 mb-0" id="portfolio-flters">
-                        <li class="mx-3 active" data-filter="*">Toute les photos</li>
+                        <li class="mx-3 active" data-filter="*">Toutes les photos</li>
                         <li class="mx-3" data-filter=".second">Orange</li>
                     </ul>
                 </div>
@@ -1180,7 +1221,7 @@
                 <div class="col-lg-5 col-md-6">
                     <p class="mb-2">
                         <i class="fa-regular fa-address-book"></i>
-                        Address
+                        Adresse
                     </p>
                     <h3 class="fw-bold">IVB 134 Ambohimanala Andoharanofotsy, Antananarivo, MDG</h3>
                     <hr class="w-100">
@@ -1211,7 +1252,7 @@
                 </div>
                 <div class="col-lg-7 col-md-6  ">
                     <p class="mb-4">
-                        Voici ci-dessous mes contacts et mon adresse pour me contacter en cas de besoins , je suis toujours disponible 24H/24H et 7j/7j pour tout services et contact
+                        Voici ci-dessous mes contacts et mon adresse pour me contacter en cas de besoin. Je suis toujours disponible 24h/24 et 7j/7 pour tous services et contacts.
                     </p>
                     <form id="contactForm">
                         <div class="row g-3">
@@ -1245,7 +1286,7 @@
                                         id="subject"
                                         placeholder="Subject"
                                     >
-                                    <label for="subject">Suijet</label>
+                                    <label for="subject">Sujet</label>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -1306,5 +1347,47 @@
 <script src="./js/dat.gui.min.js"></script>
 <script src="./js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Welcome Popup & Dark Mode Script -->
+<script>
+// Welcome Popup functionality
+function closeWelcomePopup() {
+    document.getElementById('welcomePopup').classList.remove('active');
+    localStorage.setItem('welcomePopupShown', 'true');
+}
+
+// Show welcome popup on first visit
+window.addEventListener('load', function() {
+    const hasSeenPopup = localStorage.getItem('welcomePopupShown');
+    if (!hasSeenPopup) {
+        setTimeout(function() {
+            document.getElementById('welcomePopup').classList.add('active');
+        }, 1000);
+    }
+});
+
+// Dark Mode functionality
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Check for saved dark mode preference
+const darkMode = localStorage.getItem('darkMode');
+if (darkMode === 'enabled') {
+    body.classList.add('dark-mode');
+}
+
+// Toggle dark mode
+darkModeToggle.addEventListener('click', function() {
+    body.classList.toggle('dark-mode');
+    
+    // Save preference
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', null);
+    }
+});
+</script>
+
 </body>
 </html>

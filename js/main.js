@@ -130,8 +130,44 @@ $('.btn-close').click(function () {
   
     $('#contactForm').submit(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du formulaire
-        $('#Alert').text("Je m'excuse, actuellement, le formulaire de contact ne fonctionne pas correctement.")
-         
+        
+        // Récupérer les données du formulaire
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var subject = $('#subject').val();
+        var message = $('#message').val();
+        
+        // Validation basique
+        if (!name || !email || !subject || !message) {
+            $('#Alert').css('color', 'red').text("Veuillez remplir tous les champs.");
+            return;
+        }
+        
+        // Afficher un message de chargement
+        $('#Alert').css('color', '#6244C5').text("Envoi en cours...");
+        
+        // Envoyer la requête AJAX
+        $.ajax({
+            url: 'contact.php',
+            type: 'POST',
+            data: {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#Alert').css('color', 'green').text(response.message);
+                    $('#contactForm')[0].reset();
+                } else {
+                    $('#Alert').css('color', 'red').text(response.message);
+                }
+            },
+            error: function() {
+                $('#Alert').css('color', 'red').text("Une erreur s'est produite. Veuillez réessayer plus tard.");
+            }
+        });
     });
     
 
