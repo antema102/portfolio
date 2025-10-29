@@ -163,12 +163,19 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Add parallax effect to hero section
+    // Add parallax effect to hero section (with throttling)
+    let ticking = false;
     window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const heroContainer = document.querySelector('.hero-container');
-        if (heroContainer) {
-            heroContainer.style.transform = `translateY(${scrolled * 0.5}px)`;
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                const scrolled = window.pageYOffset;
+                const heroContainer = document.querySelector('.hero-container');
+                if (heroContainer && scrolled < window.innerHeight) {
+                    heroContainer.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 
@@ -245,15 +252,18 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add smooth reveal animation for portfolio items
 $(document).ready(function() {
     $('.portfolio-item').each(function(index) {
-        $(this).css({
+        const item = $(this);
+        item.css({
             'opacity': '0',
-            'transform': 'scale(0.8)'
+            'transform': 'scale(0.8)',
+            'transition': 'opacity 0.6s ease, transform 0.6s ease'
         });
-        $(this).delay(index * 100).animate({
-            'opacity': '1'
-        }, 600, function() {
-            $(this).css('transform', 'scale(1)');
-        });
+        setTimeout(function() {
+            item.css({
+                'opacity': '1',
+                'transform': 'scale(1)'
+            });
+        }, index * 100);
     });
 });
 

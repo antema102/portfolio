@@ -796,6 +796,14 @@ a {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     transition: all 0.3s ease;
+    /* Fallback for browsers that don't support gradient text */
+    color: var(--primary);
+}
+
+@supports (-webkit-background-clip: text) {
+    .display-5 {
+        color: transparent;
+    }
 }
 
 .display-5:hover {
@@ -818,7 +826,7 @@ a {
     transition: text-shadow 0.3s ease;
 }
 
-/* Smooth transitions for all interactive elements */
-* {
+/* Smooth transitions for interactive elements */
+a, button, .btn, .nav-link, .portfolio-item, .service-item, .skill {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
