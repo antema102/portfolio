@@ -7,7 +7,7 @@
             if ($('#spinner').length > 0) {
                 $('#spinner').removeClass('show');
             }
-        },2000);
+        }, 1000);
     };
     spinner();
     
@@ -27,13 +27,13 @@
 
 
     // Smooth scrolling on the navbar links
-   /* $(".navbar-nav a").on('click', function (event) {
+    $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault();
             
             $('html, body').animate({
                 scrollTop: $(this.hash).offset().top - 45
-            }, 1500, 'easeInOutExpo');
+            }, 1000, 'easeInOutExpo');
             
             if ($(this).parents('.navbar-nav').length) {
                 $('.navbar-nav .active').removeClass('active');
@@ -41,9 +41,8 @@
             }
         }
     });
-    */
     
-   /* // Back to top button
+    // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
@@ -52,12 +51,10 @@
         }
     });
 
-    /*
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1, 'easeInOutExpo');
+        $('html, body').animate({scrollTop: 0}, 800, 'easeInOutExpo');
         return false;
     });
-    */
 
     // Typed Initiate/
     
@@ -139,6 +136,126 @@ $('.btn-close').click(function () {
     
 
 })(jQuery);
+
+// Modern animation effects
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('.container-xxl, .container-fluid');
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(section);
+    });
+
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const heroContainer = document.querySelector('.hero-container');
+        if (heroContainer) {
+            heroContainer.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+
+    // Add hover effect to skill items
+    const skillItems = document.querySelectorAll('.skill');
+    skillItems.forEach(skill => {
+        skill.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(10px)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        skill.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+
+    // Animated counter for progress bars
+    const progressBars = document.querySelectorAll('.progress-bar');
+    const animateProgressBars = () => {
+        progressBars.forEach(bar => {
+            const value = bar.getAttribute('aria-valuenow');
+            bar.style.width = value + '%';
+        });
+    };
+
+    // Trigger progress bar animation when in view
+    const progressObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateProgressBars();
+                progressObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const skillSection = document.querySelector('#skill');
+    if (skillSection) {
+        progressObserver.observe(skillSection);
+    }
+
+    // Add stagger animation to project cards
+    const projectCards = document.querySelectorAll('.service-item');
+    projectCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+
+    // Add ripple effect to buttons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple-effect');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+});
+
+// Add smooth reveal animation for portfolio items
+$(document).ready(function() {
+    $('.portfolio-item').each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'scale(0.8)'
+        });
+        $(this).delay(index * 100).animate({
+            'opacity': '1'
+        }, 600, function() {
+            $(this).css('transform', 'scale(1)');
+        });
+    });
+});
 
 $(document).ready(function() {
     $('#carouselEcotree').carousel({
