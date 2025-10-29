@@ -182,7 +182,7 @@ body.dark-mode .text-dark {
 }
 
 body.dark-mode .service-item {
-    background-color: #16213e !important;
+    background-color: #16213e;
     border: 1px solid rgba(98, 68, 197, 0.2);
 }
 
@@ -513,23 +513,27 @@ body.dark-mode .nav-pills .nav-link.active {
     color: #1a1a2e;
 }
 
-/* Footer enhancement */
-.bg-dark {
-    background: linear-gradient(135deg, #16213e, #1a1a2e) !important;
+body.dark-mode .bg-dark {
+    background: linear-gradient(135deg, #16213e, #1a1a2e);
 }
 
-/* Image hover effects */
-img {
+/* Image hover effects - Scoped to portfolio and project images */
+.portfolio-img img,
+.service-item img,
+a[data-lightbox] img {
     transition: all 0.3s ease;
 }
 
-a:hover img {
+.portfolio-img:hover img,
+.service-item:hover img,
+a[data-lightbox]:hover img {
     transform: scale(1.05);
 }
 
-/* Section transitions */
-.container-xxl, .container-fluid {
-    transition: all 0.3s ease;
+/* Section fade-in animations */
+.container-xxl.fade-in,
+.container-fluid.fade-in {
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* Skill items enhancement */
