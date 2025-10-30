@@ -408,16 +408,28 @@ $(document).ready(function() {
     });
 });
 
-// Scroll progress bar
-window.addEventListener('scroll', function() {
-    const scrollProgressBar = document.getElementById('scrollProgressBar');
-    if (scrollProgressBar) {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        scrollProgressBar.style.width = scrolled + '%';
+// Scroll progress bar with throttling
+(function() {
+    let scrollTicking = false;
+    
+    function updateScrollProgress() {
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        if (scrollProgressBar) {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgressBar.style.width = scrolled + '%';
+        }
+        scrollTicking = false;
     }
-});
+    
+    window.addEventListener('scroll', function() {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(updateScrollProgress);
+            scrollTicking = true;
+        }
+    });
+})();
 
 // Smooth scroll to anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
