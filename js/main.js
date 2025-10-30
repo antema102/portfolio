@@ -407,5 +407,31 @@ $(document).ready(function() {
         $(this).next('.invalid-feedback').remove();
     });
 });
+
+// Scroll progress bar
+window.addEventListener('scroll', function() {
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    if (scrollProgressBar) {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgressBar.style.width = scrolled + '%';
+    }
+});
+
+// Smooth scroll to anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
     });
 });

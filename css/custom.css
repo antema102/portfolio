@@ -328,7 +328,149 @@ body.dark-mode .feature-item:hover i {
     .dark-mode-toggle {
         bottom: 80px;
         right: 30px;
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
     }
+    
+    /* Better mobile spacing */
+    .container-xxl,
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Hero section mobile improvements */
+    #hero h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    #hero h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Skills section mobile */
+    .skill h6 {
+        font-size: 14px;
+    }
+    
+    /* Service cards mobile */
+    .service-item {
+        padding: 20px !important;
+        margin-bottom: 20px;
+    }
+    
+    /* Contact section mobile */
+    #contact h3 {
+        font-size: 1.2rem !important;
+        word-break: break-word;
+    }
+    
+    /* Buttons mobile */
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    /* Navbar mobile improvements */
+    .navbar-brand h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Portfolio images mobile */
+    .portfolio-img {
+        margin-bottom: 15px;
+    }
+    
+    /* Better touch targets for mobile */
+    .nav-link,
+    .btn-square {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .welcome-popup-header h2 {
+        font-size: 20px;
+    }
+    
+    .feature-item span {
+        font-size: 12px;
+    }
+    
+    #hero h1 {
+        font-size: 2rem !important;
+    }
+    
+    .service-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    /* Stack social buttons vertically on very small screens */
+    #contact .d-flex.pt-2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    #contact .btn-square {
+        margin-bottom: 10px;
+    }
+}
+
+/* Tablet specific improvements */
+@media (min-width: 768px) and (max-width: 992px) {
+    .service-item {
+        height: auto;
+        min-height: 350px;
+    }
+    
+    .portfolio-item {
+        margin-bottom: 20px;
+    }
+}
+
+/* Ripple effect for buttons */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6244C5, #FFC448);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease;
+    box-shadow: 0 2px 4px rgba(98, 68, 197, 0.3);
+}
+
+body.dark-mode .scroll-progress-bar {
+    background: linear-gradient(90deg, #FFC448, #6244C5);
 }
 
 /* Improve existing button styling */
