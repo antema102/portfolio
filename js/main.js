@@ -326,10 +326,86 @@ $(document).ready(function() {
         // Autres options...
     });
 });
+
 $(document).ready(function() {
     $('#carousel_ODC_1').carousel({
         interval: false, // Désactive l'autoplay
         wrap: false
         // Autres options...
+    });
+});
+
+// Copy email to clipboard function
+function copyEmail() {
+    const email = 'antema103@gmail.com';
+    
+    // Modern clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(() => {
+            showCopyFeedback();
+        }).catch(err => {
+            // Fallback method
+            fallbackCopyEmail(email);
+        });
+    } else {
+        // Fallback for older browsers
+        fallbackCopyEmail(email);
+    }
+}
+
+function fallbackCopyEmail(email) {
+    const textArea = document.createElement('textarea');
+    textArea.value = email;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showCopyFeedback();
+    } catch (err) {
+        console.error('Failed to copy email:', err);
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+function showCopyFeedback() {
+    const feedback = document.getElementById('copyFeedback');
+    const btn = document.getElementById('copyEmailBtn');
+    
+    feedback.style.display = 'block';
+    btn.innerHTML = '<i class="fa fa-check"></i>';
+    
+    setTimeout(() => {
+        feedback.style.display = 'none';
+        btn.innerHTML = '<i class="fa fa-copy"></i>';
+    }, 2000);
+}
+
+// Real-time form validation
+$(document).ready(function() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    $('#email').on('blur', function() {
+        const email = $(this).val();
+        if (email && !emailRegex.test(email)) {
+            $(this).addClass('is-invalid');
+            if (!$(this).next('.invalid-feedback').length) {
+                $(this).after('<div class="invalid-feedback">Veuillez entrer un email valide.</div>');
+            }
+        } else {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').remove();
+        }
+    });
+    
+    // Remove validation on focus
+    $('.form-control').on('focus', function() {
+        $(this).removeClass('is-invalid');
+        $(this).next('.invalid-feedback').remove();
+    });
+});
     });
 });
