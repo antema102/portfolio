@@ -1013,10 +1013,7 @@ body.dark-mode .btn-primary:hover {
     animation: glow 1.5s ease-in-out infinite;
 }
 
-/* Enhanced hero section with floating effect */
-.hero-container {
-    animation: gentleFloat 6s ease-in-out infinite;
-}
+/* Note: hero-container uses parallax scroll effect from main.js - no CSS animation needed */
 
 /* Staggered entrance animations for service items */
 .service-item:nth-child(1) { animation-delay: 0.1s; }

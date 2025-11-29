@@ -461,8 +461,22 @@ $(window).on('scroll', function() {
     }
 });
 
-// Enhanced portfolio hover with tilt effect
-$('.portfolio-item').on('mousemove', function(e) {
+// Throttle utility function
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Enhanced portfolio hover with tilt effect (throttled)
+$('.portfolio-item').on('mousemove', throttle(function(e) {
     const rect = this.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -474,14 +488,14 @@ $('.portfolio-item').on('mousemove', function(e) {
     $(this).find('.portfolio-img').css({
         'transform': `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
     });
-}).on('mouseleave', function() {
+}, 16)).on('mouseleave', function() {
     $(this).find('.portfolio-img').css({
         'transform': 'perspective(1000px) rotateX(0) rotateY(0)'
     });
 });
 
-// Magnetic effect for social buttons
-$('.btn-square').on('mousemove', function(e) {
+// Magnetic effect for social buttons (throttled)
+$('.btn-square').on('mousemove', throttle(function(e) {
     const rect = this.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -489,7 +503,7 @@ $('.btn-square').on('mousemove', function(e) {
     $(this).css({
         'transform': `translateX(${x * 0.3}px) translateY(${y * 0.3}px)`
     });
-}).on('mouseleave', function() {
+}, 16)).on('mouseleave', function() {
     $(this).css({
         'transform': 'translateX(0) translateY(0)'
     });
