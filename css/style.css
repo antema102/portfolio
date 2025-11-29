@@ -6,8 +6,7 @@
     --primary: #6244C5;
     --secondary: #FFC448;
     --light: #FAFAFB;
-    --dark: #12141D;
-    
+    --dark: #12141D; 
 }
 
 
@@ -419,6 +418,7 @@
     transition: all .3s ease;
     border-bottom: 2px solid transparent;
     position: relative;
+    color:white;
 }
 
 #portfolio-flters li::before {
