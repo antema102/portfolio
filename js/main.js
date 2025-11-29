@@ -584,8 +584,8 @@ const revealObserver = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.15, // Trigger when 15% of element is visible for smooth reveal
+    rootMargin: '0px 0px -100px 0px' // Start animation 100px before element enters viewport
 });
 
 document.querySelectorAll('.service-item, .portfolio-item, .skill').forEach(el => {
