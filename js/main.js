@@ -447,3 +447,148 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ============================================
+// DYNAMIC ENHANCEMENTS - Additional Interactivity
+// ============================================
+
+// Navbar scroll effect - add class when scrolled
+$(window).on('scroll', function() {
+    if ($(this).scrollTop() > 100) {
+        $('.navbar').addClass('scrolled');
+    } else {
+        $('.navbar').removeClass('scrolled');
+    }
+});
+
+// Throttle utility function
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Enhanced portfolio hover with tilt effect (throttled)
+$('.portfolio-item').on('mousemove', throttle(function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    
+    $(this).find('.portfolio-img').css({
+        'transform': `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+    });
+}, 16)).on('mouseleave', function() {
+    $(this).find('.portfolio-img').css({
+        'transform': 'perspective(1000px) rotateX(0) rotateY(0)'
+    });
+});
+
+// Magnetic effect for social buttons (throttled)
+$('.btn-square').on('mousemove', throttle(function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    $(this).css({
+        'transform': `translateX(${x * 0.3}px) translateY(${y * 0.3}px)`
+    });
+}, 16)).on('mouseleave', function() {
+    $(this).css({
+        'transform': 'translateX(0) translateY(0)'
+    });
+});
+
+// Typewriter effect enhancement - cursor blink
+$(document).ready(function() {
+    // Update icon based on dark mode
+    function updateDarkModeIcon() {
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        const icon = document.querySelector('#darkModeToggle i');
+        if (icon) {
+            icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
+    
+    // Initial icon update
+    updateDarkModeIcon();
+    
+    // Observe dark mode changes
+    const darkModeObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                updateDarkModeIcon();
+            }
+        });
+    });
+    
+    darkModeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+});
+
+// Counter animation for numbers (if needed)
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.textContent = value + '%';
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// Lazy loading for images not using data-lightbox
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+if ('loading' in HTMLImageElement.prototype) {
+    // Native lazy loading supported
+    lazyImages.forEach(img => {
+        img.src = img.dataset.src || img.src;
+    });
+} else {
+    // Fallback for older browsers
+    const lazyImageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src || img.src;
+                lazyImageObserver.unobserve(img);
+            }
+        });
+    });
+    lazyImages.forEach(img => lazyImageObserver.observe(img));
+}
+
+// Smooth reveal for content sections
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, {
+    threshold: 0.15, // Trigger when 15% of element is visible for smooth reveal
+    rootMargin: '0px 0px -100px 0px' // Start animation 100px before element enters viewport
+});
+
+document.querySelectorAll('.service-item, .portfolio-item, .skill').forEach(el => {
+    el.classList.add('fade-in-up');
+    revealObserver.observe(el);
+});

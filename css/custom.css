@@ -923,3 +923,502 @@ body.dark-mode #copyEmailBtn:hover {
         text-decoration: underline;
     }
 }
+
+/* ============================================
+   FIX: Photo Section Button Colors in Light Mode
+   ============================================ */
+
+/* Portfolio buttons - Light mode fix */
+.portfolio-btn .btn-outline-secondary {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #6244C5 !important;
+    border-color: #6244C5 !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.portfolio-btn .btn-outline-secondary:hover {
+    background: #6244C5 !important;
+    color: white !important;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(98, 68, 197, 0.5);
+}
+
+.portfolio-btn .btn-outline-secondary i {
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-btn .btn-outline-secondary:hover i {
+    transform: scale(1.2);
+}
+
+/* Portfolio buttons - Dark mode */
+body.dark-mode .portfolio-btn .btn-outline-secondary {
+    background: rgba(26, 26, 46, 0.95) !important;
+    color: #FFC448 !important;
+    border-color: #FFC448 !important;
+}
+
+body.dark-mode .portfolio-btn .btn-outline-secondary:hover {
+    background: #FFC448 !important;
+    color: #1a1a2e !important;
+    box-shadow: 0 8px 25px rgba(255, 196, 72, 0.5);
+}
+
+/* Portfolio filter buttons - Light mode visibility fix */
+#portfolio-flters li {
+    color: #12141D !important;
+    font-weight: 600;
+    background: rgba(98, 68, 197, 0.1);
+}
+
+/* ============================================
+   DYNAMIC IMPROVEMENTS - Enhanced Animations
+   ============================================ */
+
+/* Floating animation for decorative elements */
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+}
+
+/* Glowing effect animation */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(98, 68, 197, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(98, 68, 197, 0.8), 0 0 50px rgba(98, 68, 197, 0.4);
+    }
+}
+
+body.dark-mode .btn-primary:hover {
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+/* Note: hero-container uses parallax scroll effect from main.js - no CSS animation needed */
+
+/* Staggered entrance animations for service items */
+.service-item:nth-child(1) { animation-delay: 0.1s; }
+.service-item:nth-child(2) { animation-delay: 0.2s; }
+.service-item:nth-child(3) { animation-delay: 0.3s; }
+.service-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Typewriter cursor effect */
+.typed-text-output::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #FFC448;
+    font-weight: 100;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Enhanced skill bars with shimmer effect */
+.progress-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Dynamic gradient background for sections */
+#project {
+    position: relative;
+    overflow: hidden;
+}
+
+#project::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(98, 68, 197, 0.03) 0%,
+        transparent 50%
+    );
+    animation: rotate 30s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Enhanced portfolio hover effect with 3D tilt */
+.portfolio-item {
+    perspective: 1000px;
+}
+
+.portfolio-img {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-item:hover .portfolio-img {
+    transform: rotateY(5deg) rotateX(2deg);
+}
+
+/* Magnetic button effect for social icons */
+.btn-square {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn-square:hover {
+    transform: translateY(-8px);
+}
+
+.btn-square:active {
+    transform: translateY(-4px) scale(0.95);
+}
+
+/* Enhanced form focus states */
+.form-control {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-control:focus {
+    transform: scale(1.02);
+    border-width: 2px;
+}
+
+/* Animated background for about section */
+#about {
+    position: relative;
+}
+
+#about::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(98, 68, 197, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floating 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.dark-mode #about::after {
+    background: radial-gradient(circle, rgba(255, 196, 72, 0.08) 0%, transparent 70%);
+}
+
+/* Smooth section transitions on scroll */
+.container-xxl,
+.container-fluid {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Enhanced card shadows with color */
+.service-item {
+    box-shadow: 0 10px 40px rgba(98, 68, 197, 0.08);
+}
+
+.service-item:hover {
+    box-shadow: 0 20px 60px rgba(98, 68, 197, 0.2);
+}
+
+body.dark-mode .service-item {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .service-item:hover {
+    box-shadow: 0 20px 60px rgba(255, 196, 72, 0.15);
+}
+
+/* Interactive profile image */
+.image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.image:hover::before {
+    left: 100%;
+}
+
+/* Animated icons in services section */
+.service-item .bg-icon i {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.service-item:hover .bg-icon i {
+    transform: scale(1.2) rotateY(180deg);
+    color: #6244C5;
+}
+
+body.dark-mode .service-item:hover .bg-icon i {
+    color: #FFC448;
+}
+
+/* Enhanced navbar with gradient on scroll */
+.navbar.fixed-top {
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 249, 250, 0.98)) !important;
+    box-shadow: 0 4px 30px rgba(98, 68, 197, 0.1);
+}
+
+body.dark-mode .navbar.scrolled {
+    background: linear-gradient(135deg, rgba(22, 33, 62, 0.98), rgba(26, 26, 46, 0.98)) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Pulsing animation for call-to-action buttons */
+.btn-primary.demo {
+    animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(98, 68, 197, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(98, 68, 197, 0.5);
+    }
+}
+
+body.dark-mode .btn-primary.demo {
+    animation: subtlePulseDark 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulseDark {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(255, 196, 72, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(255, 196, 72, 0.5);
+    }
+}
+
+/* Hobby icons enhanced animation */
+.item_footer.icone {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.item_footer.icone:hover {
+    transform: translateY(-10px) scale(1.1);
+    background: linear-gradient(135deg, #6244C5, #8B5CF6);
+}
+
+body.dark-mode .item_footer.icone:hover {
+    background: linear-gradient(135deg, #FFC448, #FFD700);
+    color: #1a1a2e !important;
+}
+
+/* Enhanced tab navigation */
+.nav-pills .nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-pills .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.nav-pills .nav-link:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Contact form input glow effect */
+.form-floating:focus-within {
+    filter: drop-shadow(0 0 10px rgba(98, 68, 197, 0.3));
+}
+
+body.dark-mode .form-floating:focus-within {
+    filter: drop-shadow(0 0 10px rgba(255, 196, 72, 0.3));
+}
+
+/* Animated underline for links */
+.text a {
+    position: relative;
+    text-decoration: none;
+}
+
+.text a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6244C5, #FFC448);
+    transition: width 0.3s ease;
+}
+
+.text a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced scroll indicator */
+.back-to-top {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.back-to-top:hover {
+    animation: none;
+    transform: translateY(-5px);
+}
+
+/* Gradient border animation for profile picture */
+.image::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg, #6244C5, #FFC448, #6244C5, #FFC448);
+    background-size: 400% 400%;
+    border-radius: 18px;
+    z-index: -1;
+    animation: gradientBorder 4s ease infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image:hover::after {
+    opacity: 1;
+}
+
+@keyframes gradientBorder {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Enhanced dark mode toggle button */
+.dark-mode-toggle {
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.dark-mode-toggle:hover {
+    animation: none;
+}
+
+/* Particle effect on hover for buttons (visual enhancement) */
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Loading state animation */
+.loading-shimmer {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+body.dark-mode .loading-shimmer {
+    background: linear-gradient(
+        90deg,
+        #2a2a4a 25%,
+        #3a3a5a 50%,
+        #2a2a4a 75%
+    );
+    background-size: 200% 100%;
+}
