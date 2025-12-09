@@ -126,14 +126,21 @@ $('.btn-close').click(function () {
 
 */
 
- $("#contactForm").submit(function (event) {
+  // Initialiser EmailJS une seule fois au chargement de la page
+  (function () {
+    emailjs.init({
+      publicKey: "9BYTqlM8GgIn1_e1o",
+    });
+  })();
+
+  $("#contactForm").submit(function (event) {
     event.preventDefault(); // Empêche le rechargement de page
 
     // Récupérer les données du formulaire
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var subject = $("#subject").val();
-    var message = $("#message").val();
+    var name = $("#name").val().trim();
+    var email = $("#email").val().trim();
+    var subject = $("#subject").val().trim();
+    var message = $("#message").val().trim();
 
     // Validation basique
     if (!name || !email || !subject || !message) {
@@ -141,22 +148,51 @@ $('.btn-close').click(function () {
       return;
     }
 
+    // Validation de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      $("#Alert").css("color", "red").text("Veuillez entrer un email valide.");
+      return;
+    }
+
     // Message de chargement
     $("#Alert").css("color", "#6244C5").text("Envoi en cours...");
+    
+    // Désactiver le bouton pendant l'envoi
+    const submitBtn = $(this).find('button[type="submit"]');
+    const originalText = submitBtn.html();
+    submitBtn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Envoi...');
+
+    const formElement = this;
 
     // Envoi à ton Gmail (admin)
-    emailjs.sendForm("service_v02c1ny", "contact_admin", this)
+    emailjs.sendForm("service_v02c1ny", "contact_admin", formElement)
       .then(function () {
         // Envoi automatique à l'utilisateur
-        return emailjs.sendForm("service_v02c1ny", "contact_user", event.target);
+        return emailjs.sendForm("service_v02c1ny", "contact_user", formElement);
       })
       .then(function () {
-        $("#Alert").css("color", "green").text("Message envoyé avec succès ✅");
-        $("#contactForm")[0].reset(); // réinitialise le formulaire
+        $("#Alert")
+          .css("color", "green")
+          .text("Message envoyé avec succès! ✅ Je vous répondrai bientôt.");
+        
+        // Réinitialiser le formulaire après l'envoi réussi
+        formElement.reset();
+        
+        // Cacher le message après 5 secondes
+        setTimeout(function() {
+          $("#Alert").text("");
+        }, 5000);
       })
       .catch(function (error) {
-        $("#Alert").css("color", "red").text("Erreur ❌ : " + error.text);
-        console.error(error);
+        console.error("Erreur EmailJS:", error);
+        $("#Alert")
+          .css("color", "red")
+          .text("Erreur lors de l'envoi ❌ : " + (error.text || "Veuillez réessayer plus tard."));
+      })
+      .finally(function() {
+        // Réactiver le bouton
+        submitBtn.prop('disabled', false).html(originalText);
       });
   });
 
