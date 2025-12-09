@@ -1174,7 +1174,6 @@ body.dark-mode .service-item:hover {
 /* Interactive profile image */
 .image {
     position: relative;
-    overflow: hidden;
     border-radius: 15px;
 }
 
