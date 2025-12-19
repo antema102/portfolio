@@ -1759,3 +1759,145 @@ body.dark-mode #tab-2 .col-sm-12:hover {
     background: rgba(255, 196, 72, 0.08);
     box-shadow: -5px 5px 20px rgba(255, 196, 72, 0.15);
 }
+
+/* ============================================
+   LANGUAGE SWITCHER - Bilingual Support (FR/EN)
+   ============================================ */
+
+/* Language switcher container */
+.language-switcher {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 5px;
+    background: rgba(98, 68, 197, 0.05);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Language buttons */
+.lang-btn {
+    padding: 6px 16px;
+    border: none;
+    background: transparent;
+    color: #666;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(98, 68, 197, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.lang-btn:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+.lang-btn:hover {
+    color: #6244C5;
+    transform: scale(1.05);
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, #6244C5, #8B5CF6);
+    color: white;
+    box-shadow: 0 4px 15px rgba(98, 68, 197, 0.3);
+    transform: scale(1.05);
+}
+
+.lang-btn.active::before {
+    display: none;
+}
+
+/* Dark mode language switcher */
+body.dark-mode .language-switcher {
+    background: rgba(255, 196, 72, 0.08);
+}
+
+body.dark-mode .lang-btn {
+    color: #ccc;
+}
+
+body.dark-mode .lang-btn::before {
+    background: rgba(255, 196, 72, 0.2);
+}
+
+body.dark-mode .lang-btn:hover {
+    color: #FFC448;
+}
+
+body.dark-mode .lang-btn.active {
+    background: linear-gradient(135deg, #FFC448, #FFD700);
+    color: #1a1a2e;
+    box-shadow: 0 4px 15px rgba(255, 196, 72, 0.3);
+}
+
+/* Mobile language switcher adjustments */
+@media (max-width: 768px) {
+    .language-switcher {
+        margin: 10px auto;
+        width: fit-content;
+    }
+    
+    .lang-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
+
+/* Language switcher in navbar */
+.navbar .language-switcher {
+    margin-left: 15px;
+}
+
+/* Responsive: Stack language switcher on small mobile */
+@media (max-width: 480px) {
+    .navbar-nav .language-switcher {
+        margin-left: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+}
+
+/* Animation for language switch */
+@keyframes languageSwitch {
+    0% {
+        opacity: 0.7;
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-i18n] {
+    animation: languageSwitch 0.3s ease;
+}
+
+/* Flag emojis in language buttons (optional enhancement) */
+.lang-btn[data-lang="fr"]::after {
+    content: ' 🇫🇷';
+    font-size: 16px;
+}
+
+.lang-btn[data-lang="en"]::after {
+    content: ' 🇬🇧';
+    font-size: 16px;
+}
