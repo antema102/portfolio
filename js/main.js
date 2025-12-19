@@ -126,15 +126,20 @@ $('.btn-close').click(function () {
 
 */
 
-  // Initialiser EmailJS une seule fois au chargement de la page
-  (function () {
-    emailjs.init({
-      publicKey: "9BYTqlM8GgIn1_e1o",
-    });
-  })();
-
+  // Contact Form Handler with EmailJS
   $("#contactForm").submit(function (event) {
     event.preventDefault(); // Empêche le rechargement de page
+
+    // Vérifier si EmailJS est chargé
+    if (typeof emailjs === "undefined") {
+      $("#Alert")
+        .css("color", "red")
+        .text(
+          "Erreur: Service d'envoi non disponible. Veuillez réessayer plus tard."
+        );
+      console.error("EmailJS library not loaded");
+      return;
+    }
 
     // Récupérer les données du formulaire
     var name = $("#name").val().trim();
@@ -157,30 +162,37 @@ $('.btn-close').click(function () {
 
     // Message de chargement
     $("#Alert").css("color", "#6244C5").text("Envoi en cours...");
-    
+
     // Désactiver le bouton pendant l'envoi
     const submitBtn = $(this).find('button[type="submit"]');
     const originalText = submitBtn.html();
-    submitBtn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Envoi...');
+    submitBtn
+      .prop("disabled", true)
+      .html('<i class="fa fa-spinner fa-spin"></i> Envoi...');
 
     const formElement = this;
 
     // Envoi à ton Gmail (admin)
-    emailjs.sendForm("service_v02c1ny", "contact_admin", formElement)
+    emailjs
+      .sendForm("service_v02c1ny", "template_ak8sug8", formElement)
       .then(function () {
         // Envoi automatique à l'utilisateur
-        return emailjs.sendForm("service_v02c1ny", "contact_user", formElement);
+        return emailjs.sendForm(
+          "service_v02c1ny",
+          "template_hnq21th",
+          formElement
+        );
       })
       .then(function () {
         $("#Alert")
           .css("color", "green")
           .text("Message envoyé avec succès! ✅ Je vous répondrai bientôt.");
-        
+
         // Réinitialiser le formulaire après l'envoi réussi
         formElement.reset();
-        
+
         // Cacher le message après 5 secondes
-        setTimeout(function() {
+        setTimeout(function () {
           $("#Alert").text("");
         }, 5000);
       })
@@ -188,14 +200,16 @@ $('.btn-close').click(function () {
         console.error("Erreur EmailJS:", error);
         $("#Alert")
           .css("color", "red")
-          .text("Erreur lors de l'envoi ❌ : " + (error.text || "Veuillez réessayer plus tard."));
+          .text(
+            "Erreur lors de l'envoi ❌ : " +
+              (error.text || "Veuillez réessayer plus tard.")
+          );
       })
-      .finally(function() {
+      .finally(function () {
         // Réactiver le bouton
-        submitBtn.prop('disabled', false).html(originalText);
+        submitBtn.prop("disabled", false).html(originalText);
       });
   });
-
 })(jQuery);
 
 // Modern animation effects
